@@ -71,6 +71,8 @@ public class Array<E> { // E 表示数据类型
         for (int i = index; i < size - 1; i++) data[i] = data[i + 1];
         size--;
 //        data[size] = null; // loitering objects != memory leak
+        // 动态缩容
+        if (size == data.length / 2) resize(data.length / 2);
         return e;
     }
 
@@ -102,15 +104,22 @@ public class Array<E> { // E 表示数据类型
 
     // 在第 index 个位置插入一个新元素 e
     public void add(int index, E e) {
-        if (size == data.length)
-            throw new IllegalArgumentException("add last func failed. Array is full");
-
         if (index < 0 || index > size)
             throw new IllegalArgumentException("add last func failed. Require index>=0 and index<=size");
+
+        if (size == data.length)
+            resize(2 * data.length);
 
         for (int i = size - 1; i >= index; i--) data[i + 1] = data[i];
         data[index] = e;
         size++;
+    }
+
+    // 动态扩容
+    private void resize(int newCapacity) {
+        E[] newData = (E[]) new Object[newCapacity];
+        for (int i = 0; i < size; i++) newData[i] = data[i];
+        data = newData; // 引用
     }
 
     @Override
