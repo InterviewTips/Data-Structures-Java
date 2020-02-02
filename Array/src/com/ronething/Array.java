@@ -1,7 +1,7 @@
 package com.ronething;
 
-public class Array {
-    private int[] data;
+public class Array<E> { // E 表示数据类型
+    private E[] data;
     private int size; // 没有存放元素的第一个索引
 
     // 无参构造方法 初始化容量 10
@@ -11,7 +11,7 @@ public class Array {
 
     // 构造方法
     public Array(int capacity) {
-        this.data = new int[capacity];
+        this.data = (E[]) new Object[capacity];
         this.size = 0;
     }
 
@@ -31,7 +31,7 @@ public class Array {
     }
 
     // 获取索引对应的元素值
-    public int get(int index) {
+    public E get(int index) {
         if (index <= 0 || index > size)
             throw new IllegalArgumentException("Get failed. Index is illegal");
 
@@ -39,7 +39,7 @@ public class Array {
     }
 
     // 修改对应索引的值
-    public void set(int index, int e) {
+    public void set(int index, E e) {
         if (index <= 0 || index > size)
             throw new IllegalArgumentException("Get failed. Index is illegal");
 
@@ -47,60 +47,61 @@ public class Array {
     }
 
     // 索引是否存在
-    public boolean contains(int e) {
+    public boolean contains(E e) {
         for (int i = 0; i < size; i++) {
-            if (e == data[i]) return true;
+            if (e.equals(data[i])) return true;
         }
         return false;
     }
 
     // 返回元素索引
-    public int find(int e) {
+    public int find(E e) {
         for (int i = 0; i < size; i++) {
-            if (e == data[i]) return i;
+            if (e.equals(data[i])) return i;
         }
         return -1;
     }
 
     // 删除元素
-    public int remove(int index) {
+    public E remove(int index) {
         if (index < 0 || index > size)
             throw new IllegalArgumentException("add last func failed. Require index>=0 and index<=size");
 
-        int e = data[index];
+        E e = data[index];
         for (int i = index; i < size - 1; i++) data[i] = data[i + 1];
         size--;
+//        data[size] = null; // loitering objects != memory leak
         return e;
     }
 
     // 删除末尾元素
-    public int removeLast() {
+    public E removeLast() {
         return remove(size - 1);
     }
 
     // 删除首元素
-    public int removeFirst() {
+    public E removeFirst() {
         return remove(0);
     }
 
     // 删除指定元素
-    public void removeElement(int e) {
+    public void removeElement(E e) {
         int index = find(e);
         if (index != -1) remove(index);
     }
 
     // 数组末尾添加元素
-    public void addLast(int i) {
+    public void addLast(E i) {
         add(size, i);
     }
 
     // 数组首添加元素
-    public void addFirst(int i) {
+    public void addFirst(E i) {
         add(0, i);
     }
 
     // 在第 index 个位置插入一个新元素 e
-    public void add(int index, int e) {
+    public void add(int index, E e) {
         if (size == data.length)
             throw new IllegalArgumentException("add last func failed. Array is full");
 
