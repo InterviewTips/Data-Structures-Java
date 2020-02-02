@@ -30,6 +30,43 @@ public class Array {
         return size == 0;
     }
 
+    // 获取索引对应的元素值
+    public int get(int index) {
+        if (index <= 0 || index > size) {
+            throw new IllegalArgumentException("Get failed. Index is illegal");
+        }
+        return data[index];
+    }
+
+    // 修改对应索引的值
+    public void set(int index, int e) {
+        if (index <= 0 || index > size) {
+            throw new IllegalArgumentException("Get failed. Index is illegal");
+        }
+        data[index] = e;
+    }
+
+    // 索引是否存在
+    public boolean contains(int e) {
+        for (int i = 0; i < size; i++) {
+            if (e == data[i]) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // 返回元素索引
+    public int find(int e) {
+        for (int i = 0; i < size; i++) {
+            if (e == data[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+
     // 数组末尾添加元素
     public void addLast(int i) {
 //        if (size == data.length) {
