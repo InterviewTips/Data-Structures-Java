@@ -32,26 +32,24 @@ public class Array {
 
     // 获取索引对应的元素值
     public int get(int index) {
-        if (index <= 0 || index > size) {
+        if (index <= 0 || index > size)
             throw new IllegalArgumentException("Get failed. Index is illegal");
-        }
+
         return data[index];
     }
 
     // 修改对应索引的值
     public void set(int index, int e) {
-        if (index <= 0 || index > size) {
+        if (index <= 0 || index > size)
             throw new IllegalArgumentException("Get failed. Index is illegal");
-        }
+
         data[index] = e;
     }
 
     // 索引是否存在
     public boolean contains(int e) {
         for (int i = 0; i < size; i++) {
-            if (e == data[i]) {
-                return true;
-            }
+            if (e == data[i]) return true;
         }
         return false;
     }
@@ -59,21 +57,24 @@ public class Array {
     // 返回元素索引
     public int find(int e) {
         for (int i = 0; i < size; i++) {
-            if (e == data[i]) {
-                return i;
-            }
+            if (e == data[i]) return i;
         }
         return -1;
     }
 
+    // 删除元素
+    public int remove(int index) {
+        if (index < 0 || index > size)
+            throw new IllegalArgumentException("add last func failed. Require index>=0 and index<=size");
+
+        int e = data[index];
+        for (int i = index; i < size - 1; i++) data[i] = data[i + 1];
+        size--;
+        return e;
+    }
 
     // 数组末尾添加元素
     public void addLast(int i) {
-//        if (size == data.length) {
-//            throw new IllegalArgumentException("add last func failed. Array is full");
-//        }
-//        data[size] = i;
-//        size++;
         add(size, i);
     }
 
@@ -84,17 +85,13 @@ public class Array {
 
     // 在第 index 个位置插入一个新元素 e
     public void add(int index, int e) {
-        if (size == data.length) {
+        if (size == data.length)
             throw new IllegalArgumentException("add last func failed. Array is full");
-        }
 
-        if (index < 0 || index > size) {
+        if (index < 0 || index > size)
             throw new IllegalArgumentException("add last func failed. Require index>=0 and index<=size");
-        }
 
-        for (int i = size - 1; i >= index; i--) {
-            data[i + 1] = data[i];
-        }
+        for (int i = size - 1; i >= index; i--) data[i + 1] = data[i];
         data[index] = e;
         size++;
     }
@@ -106,11 +103,8 @@ public class Array {
         res.append("[");
         for (int i = 0; i < size; i++) {
             res.append(data[i]);
-            if (i != size - 1) {
-                res.append(", ");
-            }
+            if (i != size - 1) res.append(", ");
         }
-
         res.append("]");
 
         return res.toString();
