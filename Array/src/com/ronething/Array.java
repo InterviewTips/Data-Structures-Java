@@ -73,6 +73,22 @@ public class Array {
         return e;
     }
 
+    // 删除末尾元素
+    public int removeLast() {
+        return remove(size - 1);
+    }
+
+    // 删除首元素
+    public int removeFirst() {
+        return remove(0);
+    }
+
+    // 删除指定元素
+    public void removeElement(int e) {
+        int index = find(e);
+        if (index != -1) remove(index);
+    }
+
     // 数组末尾添加元素
     public void addLast(int i) {
         add(size, i);
