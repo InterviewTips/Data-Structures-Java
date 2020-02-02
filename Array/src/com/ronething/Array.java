@@ -51,7 +51,7 @@ public class Array {
             throw new IllegalArgumentException("add last func failed. Array is full");
         }
 
-        if (e < 0 || e > size) {
+        if (index < 0 || index > size) {
             throw new IllegalArgumentException("add last func failed. Require index>=0 and index<=size");
         }
 
@@ -62,5 +62,20 @@ public class Array {
         size++;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder res = new StringBuilder();
+        res.append(String.format("Array: size = %d, capacity = %d\n", size, data.length));
+        res.append("[");
+        for (int i = 0; i < size; i++) {
+            res.append(data[i]);
+            if (i != size - 1) {
+                res.append(", ");
+            }
+        }
 
+        res.append("]");
+
+        return res.toString();
+    }
 }
