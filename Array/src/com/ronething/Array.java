@@ -74,7 +74,7 @@ public class Array<E> { // E 表示数据类型
         // 动态缩容 eager
 //        if (size == data.length / 2) resize(data.length / 2);
         // lazy
-        if (size == data.length / 4) resize(data.length / 2);
+        if (size == data.length / 4 && data.length / 2 != 0) resize(data.length / 2);
         return e;
     }
 
