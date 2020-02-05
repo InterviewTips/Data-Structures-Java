@@ -3,22 +3,18 @@ package com.ronething;
 public class Main {
 
     public static void main(String[] args) {
-        Array<Integer> array = new Array<>(20);
-        for (int i = 0; i < 10; i++) {
-            array.addLast(i);
-        }
+        Array<Integer> array = new Array<>(4);
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 4; i++) {
             array.addLast(i);
         }
 
         array.addLast(2);
-        array.addLast(2);
-        System.out.println(array);
         array.removeLast();
-        array.removeFirst();
-        array.removeFirst();
-        System.out.println(array);
+        System.out.println(array); // 此时 capacity 应为 8 lazy
+        array.removeLast();
+        array.removeLast();
+        System.out.println(array); // 此时 capacity 应为 4 lazy
     }
 
 }

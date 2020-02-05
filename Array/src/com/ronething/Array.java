@@ -71,8 +71,10 @@ public class Array<E> { // E 表示数据类型
         for (int i = index; i < size - 1; i++) data[i] = data[i + 1];
         size--;
 //        data[size] = null; // loitering objects != memory leak
-        // 动态缩容
-        if (size == data.length / 2) resize(data.length / 2);
+        // 动态缩容 eager
+//        if (size == data.length / 2) resize(data.length / 2);
+        // lazy
+        if (size == data.length / 4) resize(data.length / 2);
         return e;
     }
 
