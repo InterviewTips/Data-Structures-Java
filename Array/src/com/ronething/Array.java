@@ -64,7 +64,7 @@ public class Array<E> { // E 表示数据类型
 
     // 删除元素
     public E remove(int index) {
-        if (index < 0 || index > size)
+        if (index < 0 || index >= size)
             throw new IllegalArgumentException("add last func failed. Require index>=0 and index<=size");
 
         E e = data[index];
