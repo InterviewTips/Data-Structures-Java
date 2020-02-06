@@ -124,6 +124,14 @@ public class Array<E> { // E 表示数据类型
         data = newData; // 引用
     }
 
+    public E getLast() {
+        return get(size - 1);
+    }
+
+    public E getFirst() {
+        return get(0);
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
