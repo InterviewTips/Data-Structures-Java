@@ -16,3 +16,9 @@ public interface Stack<E> {
 }
 
 ```
+
+### 应用
+
+- 括号匹配
+- 系统调用栈
+- 编辑器 undo
