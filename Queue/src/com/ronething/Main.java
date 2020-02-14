@@ -26,6 +26,8 @@ public class Main {
             System.out.println("loop queue time: " + testQueue(loopQueue, OpCount));
             ArrayQueue<Integer> arrayQueue = new ArrayQueue<>();
             System.out.println("array queue time: " + testQueue(arrayQueue, OpCount));
+            LinkedListQueue<Integer> linkedListQueue = new LinkedListQueue<>();
+            System.out.println("linkListQueue queue time: " + testQueue(linkedListQueue, OpCount));
 //        }
 
     }

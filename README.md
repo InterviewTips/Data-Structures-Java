@@ -2,3 +2,6 @@
 
 - Array
 - Stack
+- Queue
+- LinkedList
+
