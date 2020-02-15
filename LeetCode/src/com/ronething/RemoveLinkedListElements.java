@@ -54,8 +54,23 @@ public class RemoveLinkedListElements {
 
     }
 
+    public static class Solution3 {
+        public ListNode removeElements(ListNode head, int val) {
+            if (head == null) return null;
+
+            ListNode res = removeElements(head.next, val);
+            if (head.val == val) {
+                return res;
+            } else {
+                head.next = res;
+                return head;
+            }
+        }
+
+    }
+
     public static void main(String[] args) {
-        Solution s = new Solution();
+        Solution3 s = new Solution3();
         int[] nums = {1, 2, 5, 3, 2};
         ListNode l = new ListNode(nums);
         System.out.println(l);

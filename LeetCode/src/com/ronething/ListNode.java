@@ -14,7 +14,7 @@ public class ListNode {
         this.val = arr[0];
         ListNode cur = this;
         for (int i = 1; i < arr.length; i++) {
-            cur.next= new ListNode(arr[i]);
+            cur.next = new ListNode(arr[i]);
             cur = cur.next;
         }
     }
@@ -22,10 +22,10 @@ public class ListNode {
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
-        res.append(val).append("->");
-        while (next != null) {
-            res.append(next.val).append("->");
-            next = next.next;
+        ListNode cur = this;
+        while (cur != null) {
+            res.append(cur.val).append("->");
+            cur = cur.next;
         }
         res.append("NULL");
         return res.toString();
