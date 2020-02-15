@@ -56,10 +56,8 @@ public class RemoveLinkedListElements {
 
     public static void main(String[] args) {
         Solution s = new Solution();
-        ListNode l = new ListNode(1);
-        l.next = new ListNode(2);
-        l.next.next = new ListNode(3);
-        l.next.next.next = new ListNode(2);
+        int[] nums = {1, 2, 5, 3, 2};
+        ListNode l = new ListNode(nums);
         System.out.println(l);
         System.out.println(s.removeElements(l, 2));
 
