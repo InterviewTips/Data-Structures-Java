@@ -1,7 +1,5 @@
 package com.ronething;
 
-import java.security.cert.TrustAnchor;
-
 public class LinkedList<E> {
     private class Node {
         public E e;
