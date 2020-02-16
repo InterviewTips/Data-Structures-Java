@@ -30,12 +30,7 @@ public class BST<E extends Comparable<E>> {// E 需要具有可比较性
     }
 
     public void add(E e) {
-        if (root == null) {
-            root = new Node(e);
-            size++;
-        } else {
-            add(root, e);
-        }
+        root = add(root, e);
     }
 
     // 返回插入新插入节点后的根
@@ -68,6 +63,21 @@ public class BST<E extends Comparable<E>> {// E 需要具有可比较性
 
     }
 
+    public boolean contains(E e) {
+
+        return contains(root, e);
+    }
+
+    private boolean contains(Node n, E e) {
+        if (n == null) {
+            return false;
+        }
+        if (e.compareTo(n.e) < 0) {
+            return contains(n.left, e);
+        } else if (e.compareTo(n.e) > 0) {
+            return contains(n.right, e);
+        } else return true;
+    }
 
     public static void main(String[] args) {
 
