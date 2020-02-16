@@ -4,4 +4,4 @@
 - Stack
 - Queue
 - LinkedList
-
+- BST
