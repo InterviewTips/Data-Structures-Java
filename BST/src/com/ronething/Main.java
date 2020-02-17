@@ -15,6 +15,8 @@ public class Main {
 
         bst.preOrder(); // 5 3 2 4 6 8
         System.out.println();
+        bst.preOrderNR();
+        System.out.println();
         bst.inOrder(); // 2 3 4 5 6 8
         System.out.println();
         bst.postOrder();

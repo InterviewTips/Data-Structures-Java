@@ -1,5 +1,7 @@
 package com.ronething;
 
+import java.util.Stack;
+
 public class BST<E extends Comparable<E>> {// E 需要具有可比较性
 
     private class Node {
@@ -91,6 +93,19 @@ public class BST<E extends Comparable<E>> {// E 需要具有可比较性
         preOrder(node.left);
         preOrder(node.right);
 
+    }
+
+    public void preOrderNR() {
+        Stack<Node> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.isEmpty()) {
+            Node cur = stack.pop();
+            System.out.println(cur.e);
+            if (cur.right != null)
+                stack.push(cur.right);
+            if (cur.left != null)
+                stack.push(cur.left);
+        }
     }
 
     public void inOrder() {
