@@ -20,7 +20,8 @@ public class Main {
         bst.inOrder(); // 2 3 4 5 6 8
         System.out.println();
         bst.postOrder();
-
+        System.out.println();
+        bst.levelOrder();
 
     }
 }

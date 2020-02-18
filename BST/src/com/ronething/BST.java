@@ -1,5 +1,7 @@
 package com.ronething;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class BST<E extends Comparable<E>> {// E 需要具有可比较性
@@ -132,4 +134,83 @@ public class BST<E extends Comparable<E>> {// E 需要具有可比较性
         System.out.println(node.e);
     }
 
+    // 层序遍历(广度优先)
+    public void levelOrder() {
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        while (!q.isEmpty()) {
+            Node cur = q.remove();
+            System.out.println(cur.e);
+
+            if (cur.left != null)
+                q.add(cur.left);
+            if (cur.right != null)
+                q.add(cur.right);
+        }
+    }
+
+    public E minimum() {
+        if (isEmpty()) {
+            throw new IllegalArgumentException("BST is empty");
+        }
+
+        return minimum(root).e;
+    }
+
+    private Node minimum(Node n) {
+        if (n.left == null)
+            return n;
+        return minimum(n.left);
+    }
+
+    public E maximum() {
+        if (isEmpty()) {
+            throw new IllegalArgumentException("BST is empty");
+        }
+
+        return maximum(root).e;
+    }
+
+    private Node maximum(Node n) {
+        if (n.right == null)
+            return n;
+        return maximum(n.right);
+    }
+
+    public E removeMin() {
+        E ret = minimum();
+        root = removeMin(root);
+        return ret;
+    }
+
+    private Node removeMin(Node n) {
+        if (n.left == null) {
+            Node rightNode = n.right;
+            n.right = null;
+            size--;
+            return rightNode;
+        }
+
+        n.left = removeMin(n.left);
+        return n;
+
+    }
+
+    public E removeMax() {
+        E ret = maximum();
+        root = removeMax(root);
+        return ret;
+    }
+
+    private Node removeMax(Node n) {
+        if (n.right == null) {
+            Node leftNode = n.left;
+            n.left = null;
+            size--;
+            return leftNode;
+        }
+
+        n.right = removeMax(n.right);
+        return n;
+    }
 }
