@@ -1,8 +1,6 @@
 package com.ronething;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class BST<E extends Comparable<E>> {// E 需要具有可比较性
 
@@ -212,5 +210,41 @@ public class BST<E extends Comparable<E>> {// E 需要具有可比较性
 
         n.right = removeMax(n.right);
         return n;
+    }
+
+    public static void main(String[] args) {
+        BST<Integer> bst = new BST<>();
+        Random random = new Random();
+        int n = 1000;
+        for (int i = 0; i < n; i++) {
+            bst.add(random.nextInt(10000));
+        }
+
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        while (!bst.isEmpty())
+            arrayList.add(bst.removeMin());
+        System.out.println(arrayList);
+        for (int i = 1; i < arrayList.size(); i++) {
+            if (arrayList.get(i - 1) > arrayList.get(i))
+                throw new IllegalArgumentException("error");
+        }
+
+        System.out.println("removeMin done");
+
+        for (int i = 0; i < n; i++) {
+            bst.add(random.nextInt(10000));
+        }
+
+        arrayList = new ArrayList<>();
+        while (!bst.isEmpty())
+            arrayList.add(bst.removeMax());
+        System.out.println(arrayList);
+        for (int i = 1; i < arrayList.size(); i++) {
+            if (arrayList.get(i - 1) < arrayList.get(i))
+                throw new IllegalArgumentException("error");
+        }
+
+        System.out.println("removeMax done");
+
     }
 }
