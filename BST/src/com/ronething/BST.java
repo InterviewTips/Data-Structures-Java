@@ -1,5 +1,7 @@
 package com.ronething;
 
+import org.omg.PortableInterceptor.INACTIVE;
+
 import java.util.*;
 
 public class BST<E extends Comparable<E>> {// E 需要具有可比较性
@@ -210,6 +212,49 @@ public class BST<E extends Comparable<E>> {// E 需要具有可比较性
 
         n.right = removeMax(n.right);
         return n;
+    }
+
+    public void remove(E e) {
+        root = remove(root, e);
+    }
+
+    private Node remove(Node n, E e) {
+        if (n == null) {
+            return null;
+        }
+
+        if (e.compareTo(n.e) > 0) {
+            n.right = remove(n.right, e);
+            return n;
+        } else if (e.compareTo(n.e) < 0) {
+            n.left = remove(n.left, e);
+            return n;
+        } else { // e.equals(n.e)
+
+            // 右子树为空
+            if (n.right == null) {
+                Node leftNode = n.left;
+                n.left = null;
+                size--;
+                return leftNode;
+            }
+
+            // 左子树为空
+            if (n.left == null) {
+                Node rightNode = n.right;
+                n.right = null;
+                size--;
+                return rightNode;
+            }
+
+            Node s = minimum(n.right);
+            s.right = removeMin(n.right);
+            s.left = n.left;
+            n.left = n.right = null;
+            return s;
+        }
+
+
     }
 
     public static void main(String[] args) {

@@ -23,5 +23,9 @@ public class Main {
         System.out.println();
         bst.levelOrder();
 
+        // remove example
+        bst.remove(3);
+        bst.remove(6);
+        bst.preOrder();
     }
 }
