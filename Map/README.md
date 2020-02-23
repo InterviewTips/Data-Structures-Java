@@ -3,3 +3,4 @@
 - 或者说是 字典(dict)
 
 - LinkedListMap
+- BSTMap

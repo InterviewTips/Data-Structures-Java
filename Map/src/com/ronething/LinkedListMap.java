@@ -124,7 +124,7 @@ public class LinkedListMap<K, V> implements Map<K, V> {
         ArrayList<String> words = new ArrayList<>();
         LinkedListMap<String, Integer> map = new LinkedListMap<>();
         FileOperation.readFile("pride-and-prejudice.txt", words);
-        System.out.println("linkedListSet: " + words.size());
+        System.out.println("linkedListMap: " + words.size());
 
         for (String w : words) {
             Integer sum = map.get(w);
