@@ -6,3 +6,4 @@
 - LinkedList
 - BST
 - Set
+- Map
