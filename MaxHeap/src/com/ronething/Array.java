@@ -46,6 +46,16 @@ public class Array<E> { // E 表示数据类型
         data[index] = e;
     }
 
+    public void swap(int i, int j) {
+
+        if (i < 0 || i >= size || j < 0 || j >= size)
+            throw new IllegalArgumentException("Index is illegal");
+        E e = data[i];
+        data[i] = data[j];
+        data[j] = e;
+    }
+
+
     // 索引是否存在
     public boolean contains(E e) {
         for (int i = 0; i < size; i++) {
