@@ -7,3 +7,4 @@
 - BST
 - Set
 - Map
+- Heap
