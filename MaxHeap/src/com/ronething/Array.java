@@ -15,6 +15,15 @@ public class Array<E> { // E 表示数据类型
         this.size = 0;
     }
 
+    public Array(E[] arr) {
+        this.data = (E[]) new Object[arr.length];
+        for (int i = 0; i < arr.length; i++) {
+           data[i] = arr[i];
+        }
+
+        size = arr.length;
+    }
+
     // 数组元素个数
     public int getSize() {
         return size;
