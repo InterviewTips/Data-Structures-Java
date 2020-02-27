@@ -5,23 +5,6 @@ import java.util.*;
 
 public class lc347Another {
 
-    private class Freq {
-        int e, freq;
-
-        public Freq(int e, int freq) {
-            this.e = e;
-            this.freq = freq;
-        }
-    }
-
-    private class FreqCompartor implements Comparator<Freq> {
-
-        @Override
-        public int compare(Freq o1, Freq o2) {
-            return o1.freq - o2.freq;
-        }
-    }
-
     class Solution {
         public List<Integer> topKFrequent(int[] nums, int k) {
             TreeMap<Integer, Integer> map = new TreeMap<>();
@@ -32,20 +15,25 @@ public class lc347Another {
                     map.put(num, 1);
                 }
             }
-            PriorityQueue<Freq> queue = new PriorityQueue<>(new FreqCompartor());
+            PriorityQueue<Integer> queue = new PriorityQueue<>(new Comparator<Integer>() {
+                @Override
+                public int compare(Integer o1, Integer o2) {
+                    return map.get(o1) - map.get(o2);
+                }
+            });
 
             for (int key : map.keySet()) {
                 if (queue.size() < k) {
-                    queue.add(new Freq(key, map.get(key)));
-                } else if (map.get(key) > queue.peek().freq) {
+                    queue.add(key);
+                } else if (map.get(key) > map.get(queue.peek())) {
                     queue.remove();
-                    queue.add(new Freq(key, map.get(key)));
+                    queue.add(key);
                 }
             }
 
             List<Integer> list = new LinkedList<>();
             while (!queue.isEmpty()) {
-                list.add(queue.remove().e);
+                list.add(queue.remove());
             }
 
             Collections.reverse(list);
