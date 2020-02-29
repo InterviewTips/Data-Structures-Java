@@ -59,6 +59,34 @@ public class SegmentTree<E> {
         tree[treeIndex] = merger.merge(tree[leftTreeIndex], tree[rightTreeIndex]);
     }
 
+    public E query(int queryL, int queryR) {
+        if (queryL < 0 || queryR < 0 || queryL > queryR || queryL >= data.length || queryR >= data.length) {
+            throw new IllegalArgumentException("Index is illegal");
+        }
+
+        return query(0, 0, data.length - 1, queryL, queryR);
+    }
+
+    private E query(int treeIndex, int l, int r, int queryL, int queryR) {
+        if (l == queryL && r == queryR) {
+            return tree[treeIndex];
+        }
+
+        int mid = l + (r - l) / 2;
+        int leftTreeIndex = leftChild(treeIndex);
+        int rightTreeIndex = rightChild(treeIndex);
+
+        if (queryL >= mid + 1) {
+            return query(rightTreeIndex, mid + 1, r, queryL, queryR);
+        } else if (queryR <= mid) {
+            return query(leftTreeIndex, l, mid, queryL, queryR);
+        } else {
+            return this.merger.merge(query(leftTreeIndex, l, mid, queryL, mid),
+                    query(rightTreeIndex, mid + 1, r, mid + 1, queryR));
+        }
+
+    }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder();
