@@ -3,7 +3,7 @@ package com.ronething.leetcode;
 import com.ronething.Merger;
 import com.ronething.SegmentTree;
 
-public class lc303 {
+public class lc307Another {
     class NumArray {
 
         private SegmentTree<Integer> segmentTree;
@@ -25,6 +25,10 @@ public class lc303 {
             }
         }
 
+        public void update(int i, int val){
+            segmentTree.set(i, val);
+        }
+
         public int sumRange(int i, int j) {
             if (segmentTree == null) {
                 throw new IllegalArgumentException("segement tree no init");
@@ -33,5 +37,4 @@ public class lc303 {
         }
 
     }
-
 }
