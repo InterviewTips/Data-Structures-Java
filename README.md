@@ -8,3 +8,4 @@
 - Set
 - Map
 - Heap
+- SegmentTree
