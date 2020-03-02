@@ -9,3 +9,4 @@
 - Map
 - Heap
 - SegmentTree
+- Trie
