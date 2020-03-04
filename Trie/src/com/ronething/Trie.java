@@ -10,6 +10,7 @@ public class Trie {
 
         public Node(boolean isWord) {
             this.isWord = isWord;
+            next = new TreeMap<>(); // 保证不为 null
         }
 
         public Node() {
