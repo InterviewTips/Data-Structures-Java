@@ -10,3 +10,5 @@
 - Heap
 - SegmentTree
 - Trie
+- UnionFind
+- AVL
