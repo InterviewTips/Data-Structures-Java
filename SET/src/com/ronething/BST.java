@@ -1,6 +1,7 @@
 package com.ronething;
 
 import java.util.*;
+import java.util.LinkedList;
 
 public class BST<E extends Comparable<E>> {// E 需要具有可比较性
 

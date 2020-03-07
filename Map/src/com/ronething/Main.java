@@ -33,5 +33,7 @@ public class Main {
         System.out.println(testMap(linkedListMap));
         Map<String, Integer> bstMap = new BSTMap<>();
         System.out.println(testMap(bstMap));
+        Map<String, Integer> avlMap = new AVLMap<>();
+        System.out.println(testMap(avlMap));
     }
 }
