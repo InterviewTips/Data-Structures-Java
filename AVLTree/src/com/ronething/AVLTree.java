@@ -87,7 +87,7 @@ public class AVLTree<K extends Comparable<K>, V> {
         if (node == null) {
             return 0;
         }
-        return Math.abs(getHeight(node.left) - getHeight(node.right));
+        return getHeight(node.left) - getHeight(node.right);
     }
 
     private Node add(Node n, K key, V value) {
@@ -109,10 +109,79 @@ public class AVLTree<K extends Comparable<K>, V> {
 
         // 平衡因子
         int balanceFactor = getBalanceFactor(n);
-        if (balanceFactor > 1) {
-            System.out.println("unbalanced: " + balanceFactor);
+//        if (balanceFactor > 1) {
+//            System.out.println("unbalanced: " + balanceFactor);
+//        }
+
+        // 平衡维护
+
+        // LL
+        if (balanceFactor > 1 && getBalanceFactor(n.left) >= 0) {
+            return rightRotate(n);
         }
+
+        // RR
+        if (balanceFactor < -1 && getBalanceFactor(n.right) <= 0) {
+            return leftRotate(n);
+        }
+
+        // LR
+        if (balanceFactor > 1 && getBalanceFactor(n.left) < 0) {
+            n.left = leftRotate(n.left);
+            return rightRotate(n);
+        }
+
+        // RL
+        if (balanceFactor < -1 && getBalanceFactor(n.right) > 0) {
+            n.right = rightRotate(n.right);
+            return leftRotate(n);
+        }
+
         return n;
+    }
+
+    // 右旋转
+    // 对节点y进行向右旋转操作，返回旋转后新的根节点x
+    //        y                              x
+    //       / \                           /   \
+    //      x   T4     向右旋转 (y)        z     y
+    //     / \       - - - - - - - ->    / \   / \
+    //    z   T3                       T1  T2 T3 T4
+    //   / \
+    // T1   T2
+    private Node rightRotate(Node y) {
+        Node x = y.left;
+        Node t3 = x.right;
+        // 旋转操作
+        x.right = y;
+        y.left = t3;
+        // 更新 height 先更新 y
+        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+
+        return x;
+    }
+
+    // 左旋转
+    // 对节点y进行向左旋转操作，返回旋转后新的根节点x
+    //    y                             x
+    //  /  \                          /   \
+    // T1   x      向左旋转 (y)       y     z
+    //     / \   - - - - - - - ->   / \   / \
+    //   T2  z                     T1 T2 T3 T4
+    //      / \
+    //     T3 T4
+    private Node leftRotate(Node y) {
+        Node x = y.right;
+        Node t2 = x.left;
+        // 旋转操作
+        x.left = y;
+        y.right = t2;
+        // 更新 height 先更新 y
+        y.height = Math.max(getHeight(y.left), getHeight(y.right)) + 1;
+        x.height = Math.max(getHeight(x.left), getHeight(x.right)) + 1;
+
+        return x;
     }
 
     private Node getNode(Node node, K key) {
