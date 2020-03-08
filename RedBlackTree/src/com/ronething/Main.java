@@ -13,8 +13,9 @@ public class Main {
 
             Collections.sort(words); // 进行排序 二分搜索树退化成链表
             //Output:
-            //BST: 16.450231591
-            //AVL: 0.070104507
+            //BST: 14.494550439
+            //AVL: 0.085507763
+            //RBTree: 0.068327038
 
             BST<String, Integer> bst = new BST<>();
             long startTime = System.nanoTime();
@@ -53,6 +54,25 @@ public class Main {
             endTime = System.nanoTime();
 
             System.out.println("AVL: " + (endTime - startTime) / 1000000000.0);
+
+            RBTree<String, Integer> rbTree = new RBTree<>();
+            startTime = System.nanoTime();
+            for (String w : words) {
+                Integer sum = rbTree.get(w);
+                if (sum != null) { // +1
+                    rbTree.set(w, sum + 1);
+                } else { // add
+                    rbTree.add(w, 1);
+                }
+            }
+
+            for (String w : words) {
+                rbTree.contains(w);
+            }
+
+            endTime = System.nanoTime();
+
+            System.out.println("RBTree: " + (endTime - startTime) / 1000000000.0);
         }
 
 
