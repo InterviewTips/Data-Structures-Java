@@ -12,3 +12,4 @@
 - Trie
 - UnionFind
 - AVL
+- RedBlackTree
