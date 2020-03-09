@@ -1,4 +1,4 @@
-## 数据结构
+## Data-Structures
 
 - Array
 - Stack
@@ -13,3 +13,4 @@
 - UnionFind
 - AVL
 - RedBlackTree
+- HashCode
