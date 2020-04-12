@@ -38,10 +38,6 @@ public class Array<E> { // E 表示数据类型
         return data[index];
     }
 
-    public E getFirst() {
-        return get(0);
-    }
-
     // 修改对应索引的值
     public void set(int index, E e) {
         if (index < 0 || index >= size)
@@ -126,6 +122,14 @@ public class Array<E> { // E 表示数据类型
         E[] newData = (E[]) new Object[newCapacity];
         for (int i = 0; i < size; i++) newData[i] = data[i];
         data = newData; // 引用
+    }
+
+    public E getLast() {
+        return get(size - 1);
+    }
+
+    public E getFirst() {
+        return get(0);
     }
 
     @Override
