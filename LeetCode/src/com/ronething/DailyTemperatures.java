@@ -43,6 +43,49 @@ public class DailyTemperatures {
         return result;
     }
 
+    // 思考：如果求的是元素呢
+    public int[] dailyTemperaturesStack1(int[] T) {
+
+        // 单调递减栈
+        int[] result = new int[T.length];
+        Stack<Integer> s = new Stack<>();// 存的是元素索引,而不是元素本身
+        for (int i = T.length - 1; i >= 0; i--) { // 倒着往栈里放
+            while (!s.empty() && s.peek() <= T[i]) { // 判定个子高矮
+                // 注意：这里需要 <= 如果只是 <，相同的元素会被 peek 到, 例如 73,73,75 结果会变成 [73,75,-1] 而不是 [75,75,-1]
+                s.pop(); // 矮个起开，反正也被挡着了……
+            }
+            result[i] = s.empty() ? -1 : s.peek(); // 这个元素身后的第一个高个
+            s.push(T[i]); // 进队，接受之后的身高判定吧！
+        }
+
+
+        return result;
+    }
+
+    public int[] dailyTemperaturesStack2(int[] T) {
+
+        int[] result = new int[T.length];
+        Stack<Integer> s = new Stack<>();// 存的是元素索引,而不是元素本身
+        for (int i = 0; i < T.length; i++) {
+            while (!s.empty() && T[i] > T[s.peek()]) {
+                // 栈不为空 且当前温度(数字) > s.peek()(栈顶元素) 那么取出栈顶元素且标记 result
+                int t = s.peek(); // 取出栈顶元素
+                result[t] = T[i];
+                s.pop(); // 弹出元素
+            }
+            s.push(i); // 注意：push 的是元素索引
+        }
+
+        // 栈还有其他元素
+        while (!s.empty()) {
+            int t = s.pop();
+            result[t] = -1;
+        }
+
+
+        return result;
+    }
+
 
     public static void main(String[] args) {
         int[] T = new int[]{73, 74, 75, 71, 69, 72, 76, 73};
@@ -53,6 +96,16 @@ public class DailyTemperatures {
         }
         System.out.println();
         result = d.dailyTemperaturesStack(T);
+        for (int r : result) {
+            System.out.print(r + " ");
+        }
+        System.out.println();
+        result = d.dailyTemperaturesStack1(T);
+        for (int r : result) {
+            System.out.print(r + " ");
+        }
+        System.out.println();
+        result = d.dailyTemperaturesStack2(T);
         for (int r : result) {
             System.out.print(r + " ");
         }
